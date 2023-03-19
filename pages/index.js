@@ -12,7 +12,12 @@ function Home() {
   const { data, error } = useSWR('https://dl.halo.run/api', fetcher)
 
   if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading Data...</div>
+  if (!data) return (
+    <div className={styles.loading_container}>
+      <div className={styles.spinner}></div>
+      <div>Loading Data...</div>
+    </div>
+  )
 
   // Filter beta items, key containes "beta" or "alpha"
   const beta_items = data.filter(item => item.key.includes("beta") || item.key.includes("alpha"))
