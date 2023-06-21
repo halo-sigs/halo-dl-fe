@@ -33,6 +33,7 @@ function Home() {
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
             integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossOrigin="anonymous" />
           <link rel="shortcut icon" href="/favicon.png" />
+          <script async defer data-website-id="2b41f81a-37e0-48fe-875b-3907e1913667" src="https://analytics.halo.run/umami.js"></script>
         </Head>
 
         <main className={styles.main}>
