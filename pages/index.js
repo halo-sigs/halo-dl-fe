@@ -22,6 +22,7 @@ function Home() {
   // Filter beta items, key containes "beta" or "alpha"
   const beta_items = data.filter(item => item.key.includes("beta") || item.key.includes("alpha"))
   const release_items = data.filter(item => !item.key.includes("beta") && !item.key.includes("alpha") && item.key.includes("jar"))
+  const pro_items = data.filter(item => item.key.includes("pro") && !item.key.includes("beta") && !item.key.includes("alpha") && item.key.includes("jar"))
   const config_items = data.filter(item => item.key.includes("config"))
 
   return (
@@ -45,7 +46,7 @@ function Home() {
           </div>
 
           <div className="row">
-            <div className="col-4 col-md-4 col-sm-12">
+            <div className="col-3 col-md-3 col-sm-12">
               <h5>Releases</h5>
 
               <ul className="list-group">
@@ -58,10 +59,24 @@ function Home() {
                   </a>
                 ))}
               </ul>
-
             </div>
 
-            <div className="col-4 col-md-4 col-sm-12">
+            <div className="col-3 col-md-3 col-sm-12">
+              <h5>Pro Releases</h5>
+
+              <ul className="list-group">
+                {pro_items.map((item) => (
+                  <a href={"https://dl.halo.run/" + item.key}>
+                    <li className="list-group-item">
+                      {item.key}
+                      <span className="badge bg-primary rounded-pill float-end">{filesize(item.size)}</span>
+                      </li>
+                  </a>
+                ))}
+              </ul>
+            </div>
+
+            <div className="col-3 col-md-3 col-sm-12">
               <h5>Pre-Releases</h5>
               <ul className="list-group">
                 {beta_items.map((item) => (
@@ -75,7 +90,7 @@ function Home() {
               </ul>
             </div>
 
-            <div className="col-4 col-md-4 col-sm-12">
+            <div className="col-3 col-md-3 col-sm-12">
               <h5>Configs</h5>
               <ul className="list-group">
                 {config_items.map((item) => (
