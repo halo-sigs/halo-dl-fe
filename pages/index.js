@@ -42,7 +42,6 @@ function Home() {
             <h1 className={styles.title}>
               Halo Download Mirror
             </h1>
-            <h5 className="text-muted">Maintained by NovaKwok</h5>
           </div>
 
           <div className="row">
@@ -109,7 +108,7 @@ function Home() {
           <center>
             <footer className={styles.footer}>
               Crafted with {' '}
-              <span className="text-danger"><i className="fa fa-heart" aria-hidden="true"></i></span> by Nova Kwok & Tuki in Shanghai.
+              <span className="text-danger"><i className="fa fa-heart" aria-hidden="true"></i></span> by <a href="https://nova.moe">Nova Kwok</a> & <a href="https://tuki.moe">Tuki Deng</a> in Shanghai.
               <br />
               This service is serverless, hosted on Cloudflare, built with Workers, Cloudflare Pages and R2.
               <br />
