@@ -20,8 +20,8 @@ function Home() {
   )
 
   // Filter beta items, key containes "beta" or "alpha"
-  const beta_items = data.filter(item => item.key.includes("beta") || item.key.includes("alpha"))
-  const release_items = data.filter(item => !item.key.includes("beta") && !item.key.includes("alpha") && item.key.includes("jar"))
+  const beta_items = data.filter(item => (item.key.includes("beta") || item.key.includes("alpha"))&& !item.key.includes("halo-1"))
+  const release_items = data.filter(item => !item.key.includes("beta") && !item.key.includes("alpha") && item.key.includes("jar") && !item.key.includes("pro") && !item.key.includes("v") && !item.key.includes("halo-1"))
   const pro_items = data.filter(item => item.key.includes("pro") && !item.key.includes("beta") && !item.key.includes("alpha") && item.key.includes("jar"))
   const config_items = data.filter(item => item.key.includes("config"))
 
