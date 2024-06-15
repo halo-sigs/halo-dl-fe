@@ -98,7 +98,7 @@ function Home() {
                         title={item.key}
                       >
                         <span className="text-sm line-clamp-1 flex-1 shrink text-zinc-900">
-                          {item.key}
+                          {item.key.split("/").pop()}
                         </span>
                         <div className="hidden group-hover:inline-flex text-sm gap-1.5">
                           <a
@@ -178,7 +178,7 @@ function GitHubLink({ href }) {
   const shortName = match[1];
 
   return (
-    <a href={href} class="repo-link" target="_blank" rel="noreferrer">
+    <a href={href} className="repo-link" target="_blank" rel="noreferrer">
       <i className="icon-[simple-icons--github]"></i>
       <span> {shortName} </span>
     </a>
