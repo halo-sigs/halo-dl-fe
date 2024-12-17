@@ -2,9 +2,16 @@ import { filesize } from "filesize";
 import Head from "next/head";
 import toast, { Toaster } from "react-hot-toast";
 import { BarLoader } from "react-spinners";
+import semver from "semver";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+function versionCompare(a, b) {
+  const versionA = a.key.match(/halo(?:-pro)?-(.+?)\.jar/)?.[1];
+  const versionB = b.key.match(/halo(?:-pro)?-(.+?)\.jar/)?.[1];
+  return semver.rcompare(versionA, versionB);
+}
 
 function Home() {
   const { data, error } = useSWR("https://dl.halo.run/api", fetcher);
@@ -25,7 +32,7 @@ function Home() {
         (item.key.includes("beta") || item.key.includes("alpha")) &&
         !item.key.includes("halo-1"),
     )
-    .sort((a, b) => b.key.localeCompare(a.key));
+    .sort(versionCompare);
 
   const release_items = data
     .filter(
@@ -37,7 +44,7 @@ function Home() {
         !item.key.includes("v") &&
         !item.key.includes("halo-1"),
     )
-    .sort((a, b) => b.key.localeCompare(a.key));
+    .sort(versionCompare);
 
   const pro_items = data
     .filter(
@@ -47,7 +54,7 @@ function Home() {
         !item.key.includes("alpha") &&
         item.key.includes("jar"),
     )
-    .sort((a, b) => b.key.localeCompare(a.key));
+    .sort(versionCompare);
 
   const combinedItems = [
     { title: "Releases（社区版）", items: release_items },
