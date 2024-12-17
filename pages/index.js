@@ -23,7 +23,7 @@ function Home() {
     .filter(
       (item) =>
         (item.key.includes("beta") || item.key.includes("alpha")) &&
-        !item.key.includes("halo-1")
+        !item.key.includes("halo-1"),
     )
     .sort((a, b) => b.key.localeCompare(a.key));
 
@@ -35,7 +35,7 @@ function Home() {
         item.key.includes("jar") &&
         !item.key.includes("pro") &&
         !item.key.includes("v") &&
-        !item.key.includes("halo-1")
+        !item.key.includes("halo-1"),
     )
     .sort((a, b) => b.key.localeCompare(a.key));
 
@@ -45,17 +45,14 @@ function Home() {
         item.key.includes("pro") &&
         !item.key.includes("beta") &&
         !item.key.includes("alpha") &&
-        item.key.includes("jar")
+        item.key.includes("jar"),
     )
     .sort((a, b) => b.key.localeCompare(a.key));
 
-  const config_items = data.filter((item) => item.key.includes("config"));
-
   const combinedItems = [
-    { title: "Releases（正式版）", items: release_items },
+    { title: "Releases（社区版）", items: release_items },
     { title: "Releases（专业版）", items: pro_items },
     { title: "Releases（预发布版）", items: beta_items },
-    { title: "Configs（配置文件）", items: config_items },
   ];
 
   function handleCopy(key) {
@@ -82,7 +79,7 @@ function Home() {
         <main>
           <h1 className="text-2xl font-semibold">Halo 资源下载</h1>
 
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {combinedItems.map((group) => (
               <div key={group.title}>
                 <h5 className="text-lg font-medium">{group.title}</h5>
