@@ -58,7 +58,7 @@ function Home() {
 
   const combinedItems = [
     { title: "Releases（社区版）", items: release_items },
-    { title: "Releases（专业版）", items: pro_items },
+    { title: "Releases（付费版）", items: pro_items },
     { title: "Releases（预发布版）", items: beta_items },
   ];
 
