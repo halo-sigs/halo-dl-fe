@@ -29,30 +29,23 @@ function Home() {
   const beta_items = data
     .filter(
       (item) =>
-        (item.key.includes("beta") || item.key.includes("alpha")) &&
-        !item.key.includes("halo-1"),
+        item.key.startsWith("prerelease/") && !item.key.includes("halo-1")
     )
     .sort(versionCompare);
 
   const release_items = data
     .filter(
       (item) =>
-        !item.key.includes("beta") &&
-        !item.key.includes("alpha") &&
-        item.key.includes("jar") &&
+        item.key.startsWith("release/") &&
         !item.key.includes("pro") &&
-        !item.key.includes("v") &&
-        !item.key.includes("halo-1"),
+        !item.key.includes("halo-1") &&
+        !item.key.includes("v")
     )
     .sort(versionCompare);
 
   const pro_items = data
     .filter(
-      (item) =>
-        item.key.includes("pro") &&
-        !item.key.includes("beta") &&
-        !item.key.includes("alpha") &&
-        item.key.includes("jar"),
+      (item) => item.key.startsWith("release/") && item.key.includes("pro")
     )
     .sort(versionCompare);
 
