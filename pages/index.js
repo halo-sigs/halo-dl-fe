@@ -29,7 +29,9 @@ function Home() {
   const beta_items = data
     .filter(
       (item) =>
-        item.key.startsWith("prerelease/") && !item.key.includes("halo-1")
+        item.key.startsWith("prerelease/") &&
+        !item.key.includes("halo-1") &&
+        !item.key.includes("sha256"),
     )
     .sort(versionCompare);
 
@@ -39,13 +41,17 @@ function Home() {
         item.key.startsWith("release/") &&
         !item.key.includes("pro") &&
         !item.key.includes("halo-1") &&
-        !item.key.includes("v")
+        !item.key.includes("v") &&
+        !item.key.includes("sha256"),
     )
     .sort(versionCompare);
 
   const pro_items = data
     .filter(
-      (item) => item.key.startsWith("release/") && item.key.includes("pro")
+      (item) =>
+        item.key.startsWith("release/") &&
+        item.key.includes("pro") &&
+        !item.key.includes("sha256"),
     )
     .sort(versionCompare);
 
@@ -59,6 +65,19 @@ function Home() {
     navigator.clipboard.writeText(`https://dl.halo.run/${key}`);
 
     toast.success("已复制下载链接");
+  }
+
+  async function handleCopySHA256(key) {
+    const response = await fetch(`https://dl.halo.run/${key}.sha256`);
+
+    if (!response.ok) {
+      toast.error("获取 SHA256 值失败");
+      return;
+    }
+
+    const data = await response.text();
+    navigator.clipboard.writeText(data);
+    toast.success("已复制 SHA256 值");
   }
 
   return (
@@ -108,7 +127,13 @@ function Home() {
                             onClick={() => handleCopy(item.key)}
                             className="text-indigo-600 hover:text-indigo-500"
                           >
-                            复制
+                            复制链接
+                          </button>
+                          <button
+                            onClick={() => handleCopySHA256(item.key)}
+                            className="text-indigo-600 hover:text-indigo-500"
+                          >
+                            复制 SHA256
                           </button>
                         </div>
                         <span className="flex-none text-xs text-zinc-500 inline-block group-hover:hidden">
